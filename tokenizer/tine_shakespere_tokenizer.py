@@ -22,8 +22,12 @@ class SimpleBPETokenizer:
         text = tokens.decode("utf-8", errors="replace")
         return text
 
-def load_vocab(size: int):
-    file_name = f'./vocab/vocab.pkl'
+def get_tokenizer():
+    file_name = f'./vocab/merges.pkl'
     with open(file_name, 'rb') as f:
-        vocab = pickle.load(f)
-    return vocab
+        merges = pickle.load(f)
+    vocab = {idx: bytes([idx]) for idx in range(256)}
+    for (p0, p1), idx in merges.items():
+        vocab[idx] = vocab[p0] + vocab[p1]
+
+    return SimpleBPETokenizer(vocab)
