@@ -18,7 +18,7 @@ class SimpleBPETokenizer:
           tokens = merge(tokens, pair, idx)
         return tokens
 
-    def decode(ids):
+    def decode(self, ids):
         tokens = b"".join(vocab[idx] for idx in ids)
         text = tokens.decode("utf-8", errors="replace")
         return text
