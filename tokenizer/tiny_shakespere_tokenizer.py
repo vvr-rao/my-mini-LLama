@@ -19,7 +19,7 @@ class SimpleBPETokenizer:
         return tokens
 
     def decode(self, ids):
-        tokens = b"".join(vocab[idx] for idx in ids)
+        tokens = b"".join(self.vocab[idx] for idx in ids)
         text = tokens.decode("utf-8", errors="replace")
         return text
 
