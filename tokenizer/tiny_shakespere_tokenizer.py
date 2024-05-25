@@ -11,10 +11,10 @@ class SimpleBPETokenizer:
         tokens = list(text.encode("utf-8"))
         while len(tokens) >= 2:
           stats = get_stats(tokens)
-          pair = min(stats, key=lambda p: merges.get(p, float("inf")))
-          if pair not in merges:
+          pair = min(stats, key=lambda p: self.merges.get(p, float("inf")))
+          if pair not in self.merges:
             break # nothing else can be merged
-          idx = merges[pair]
+          idx = self.merges[pair]
           tokens = merge(tokens, pair, idx)
         return tokens
 
