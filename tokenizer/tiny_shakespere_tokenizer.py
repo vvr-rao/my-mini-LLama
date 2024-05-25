@@ -1,8 +1,9 @@
 import pickle
 
 class SimpleBPETokenizer:
-    def __init__(self, vocab):
+    def __init__(self, vocab, merges):
         self.vocab = vocab
+        self.merges = merges
         self.vocab_len = len(vocab)
 
     def encode(self, text):
@@ -36,4 +37,4 @@ def get_tokenizer():
     for (p0, p1), idx in merges.items():
         vocab[idx] = vocab[p0] + vocab[p1]
 
-    return SimpleBPETokenizer(vocab)
+    return SimpleBPETokenizer(vocab, merges)
