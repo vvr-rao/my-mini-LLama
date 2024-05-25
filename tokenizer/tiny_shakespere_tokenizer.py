@@ -3,7 +3,7 @@ import pickle
 class SimpleBPETokenizer:
     def __init__(self, vocab):
         self.vocab = vocab
-        self.vocab_len = len(merges)
+        self.vocab_len = len(vocab)
 
     def encode(self, text):
         # given a string, return list of integers (the tokens)
