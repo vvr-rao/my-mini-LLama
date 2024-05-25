@@ -22,6 +22,12 @@ class SimpleBPETokenizer:
         text = tokens.decode("utf-8", errors="replace")
         return text
 
+def get_stats(ids):
+    counts = {}
+    for pair in zip(ids, ids[1:]): # Pythonic way to iterate consecutive elements
+        counts[pair] = counts.get(pair, 0) + 1
+    return counts
+
 def get_tokenizer():
     file_name = f'./vocab/merges.pkl'
     with open(file_name, 'rb') as f:
